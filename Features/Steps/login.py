@@ -8,7 +8,9 @@ from Features.Pages.LoginPage import LoginPage
 @given(u'I got navigated to OrangeHRM')
 def step_impl(context):
     context.login_page = LoginPage(context.driver)
-    assert context.driver.find_element('xpath', '//h5[text()="Login"]').text == 'Login'
+    assert context.login_page.assert_login_text() == 'Login'
+
+    # assert context.driver.find_element('xpath', '//h5[text()="Login"]').text == 'Login'
 
 
 @when(u'I enter username')
@@ -34,7 +36,9 @@ def step_impl(context):
 
 @then(u'User should land onto Homepage')
 def step_impl(context):
-    assert context.driver.find_element('xpath', '//h6[text()="Dashboard"]').text == 'Dashboard', 'user logged in'
+    assert context.login_page.assert_dashboard_text() == 'Dashboard', 'user logged in'
+
+    # assert context.driver.find_element('xpath', '//h6[text()="Dashboard"]').text == 'Dashboard', 'user logged in'
 
 
 @when(u'I enter \'adm\'')
@@ -52,4 +56,6 @@ def step_impl(context):
 
 @then(u'User should see "Invalid credentials"')
 def step_impl(context):
-    assert context.driver.find_element('xpath', '//p[text()="Invalid credentials"]').text == 'Invalid credentials'
+    assert context.login_page.invalid_credentials() == 'Invalid credentials'
+
+    # assert context.driver.find_element('xpath', '//p[text()="Invalid credentials"]').text == 'Invalid credentials'
