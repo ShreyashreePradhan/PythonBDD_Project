@@ -22,8 +22,8 @@ def before_scenario(context, driver):
         context.driver = webdriver.Firefox(service=service)
     context.driver.maximize_window()
     context.driver.get(ConfigReader.read_configuration('basic info', 'url'))
-    context.driver.implicitly_wait(30
-                                   )
+    context.driver.implicitly_wait(30)
+
 
 
 def after_scenario(context, drive):

@@ -13,7 +13,7 @@ class LoginPage(BasePage):
     invalid_credentials_xpath = '//p[text()="Invalid credentials"]'
 
     def assert_login_text(self):
-        return self.get_element('login_xpath', self.login_xpath).text
+        return self.get_text('login_xpath', self.login_xpath)
 
         # return self.driver.find_element('xpath', self.login_xpath).text
 
@@ -33,11 +33,11 @@ class LoginPage(BasePage):
         # self.driver.find_element('xpath', self.password_xpath).send_keys(password_text)
 
     def assert_dashboard_text(self):
-        return self.get_element('dashboard_xpath', self.dashboard_xpath).text
+        return self.get_text('dashboard_xpath', self.dashboard_xpath)
 
         # return self.driver.find_element('xpath', self.dashboard_xpath).text
 
     def invalid_credentials(self):
-        return self.get_element('nvalid_credentials_xpath', self.invalid_credentials_xpath).text
+        return self.get_text('invalid_credentials_xpath', self.invalid_credentials_xpath)
 
         # return self.driver.find_element('xpath', self.invalid_credentials_xpath).text
