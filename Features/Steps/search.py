@@ -6,11 +6,11 @@ from Features.Pages.HomePage import HomePage
 from Features.Pages.LoginPage import LoginPage
 
 
-@given(u'I logged in to OrangeHRM')
-def step_impl(context):
+@given(u'I logged in to OrangeHRM with "{username}" and "{password}"')
+def step_impl(context,username,password):
     context.login_page = LoginPage(context.driver)
-    context.login_page.enter_username('Admin')
-    context.login_page.enter_password('admin123')
+    context.login_page.enter_username(username)
+    context.login_page.enter_password(password)
     context.login_page.click_on_login()
 
     # context.driver.find_element('xpath', '//input[@name="username"]').send_keys('Admin')
@@ -30,8 +30,8 @@ def step_impl(context, module_name):
 @then(u'I only see "{module_name}" module')
 def step_impl(context, module_name):
     time.sleep(2)
-    # context.list_of_menus = context.home_page.list_of_menu()
-    context.list_of_menus = context.driver.find_elements('xpath', '//ul[@class="oxd-main-menu"]/li/a/span')
+    context.list_of_menus = context.home_page.list_of_menu()
+    #context.list_of_menus = context.driver.find_elements('xpath', '//ul[@class="oxd-main-menu"]/li/a/span')
     assert len(context.list_of_menus) == 1
     for i in context.list_of_menus:
         assert i.text == module_name
