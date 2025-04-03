@@ -18,22 +18,21 @@ def step_impl(context):
     # context.driver.find_element('xpath', '//button[@type="submit"]').click()
 
 
-@when(u'I search \'Leave\'')
-def step_impl(context):
+@when(u'I search "{module_name}"')
+def step_impl(context, module_name):
     time.sleep(2)
     context.home_page = HomePage(context.driver)
-    context.home_page.enter_leave_text("Leave")
-
+    context.home_page.enter_leave_text(module_name)
 
     # context.driver.find_element('xpath', '//input[@class="oxd-input oxd-input--active"]').send_keys("Leave")
 
 
-@then(u'I only see \'Leave\' module')
-def step_impl(context):
+@then(u'I only see "{module_name}" module')
+def step_impl(context, module_name):
     time.sleep(2)
     # context.list_of_menus = context.home_page.list_of_menu()
     context.list_of_menus = context.driver.find_elements('xpath', '//ul[@class="oxd-main-menu"]/li/a/span')
     assert len(context.list_of_menus) == 1
     for i in context.list_of_menus:
-        assert i.text == 'Leave'
+        assert i.text == module_name
         break
