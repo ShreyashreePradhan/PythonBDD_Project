@@ -1,3 +1,5 @@
+import allure
+from allure_commons.types import AttachmentType
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 import sys
@@ -28,3 +30,10 @@ def before_scenario(context, driver):
 
 def after_scenario(context, drive):
     context.driver.quit()
+
+def after_step(context,step):
+    if step.status == 'failed':
+        # take screenshot and attach to azure report
+        allure.attach(context.driver.get_screenshot_as_png(),name='failed_screenshot', attachment_type=AttachmentType.PNG)
+
+

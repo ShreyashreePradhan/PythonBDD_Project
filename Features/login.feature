@@ -14,9 +14,9 @@ Feature: Login in OrangeHRM
     When I enter invalid username as "<username>"
     And I enter invalid password as "<password>"
     And I click on login
-    Then I should see "Invalid credentials" in loginpage
+    Then I should see "Invalid credentials there" in loginpage
     Examples:
       |username  |password|
       |adm        |    12    |
-      |13           |     89     |
+      |13         |    89    |
 
